@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SWR Intranet · Editable Homepage</title>
+  <link rel="icon" href="assets/images/favicon.ico">
+  <!-- Bootstrap 5 + Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <!-- Plugins -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <!-- Custom theme style (refreshed) -->
+  <style>
+    /* ----- reset / base ----- */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    .wrapper-body { max-width: 1440px; margin: 0 auto; background: #ffffff; box-shadow: 0 0 40px rgba(0,0,0,0.04); }
+
+    /* ----- navbar & header ----- */
+    .menu-top-inverse { background: #0a2f5e !important; padding: 6px 0; border-bottom: 2px solid #1d4a7a; }
+    .menu-top-inverse .social-icons-menu-top a { color: #e6f0ff; transition: 0.2s; display: inline-block; margin: 0 6px; }
+    .menu-top-inverse .social-icons-menu-top a:hover { color: #ffd966; transform: scale(1.1); }
+    .navbar { background: #0a2f5e !important; padding: 0; border: none; }
+    .navbar-brand img { height: 52px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    .navbar-nav .nav-link { color: #b6d4fe !important; font-weight: 500; padding: 0.8rem 1.1rem; letter-spacing: 0.01em; transition: 0.2s; }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus { color: #ffffff !important; background: rgba(255,255,255,0.07); }
+    .dropdown-menu { background: #0e3d72; border: none; border-radius: 12px; padding: 0.5rem 0; box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+    .dropdown-menu .dropdown-item { color: #e6f0ff; padding: 0.5rem 1.5rem; font-weight: 450; }
+    .dropdown-menu .dropdown-item:hover { background: #1a4e82; color: #fff; border-radius: 8px; }
+    .mega-menu .wrapper-row-features .col-md-3 ul li a { color: #e0edff; font-weight: 450; display: block; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .mega-menu .wrapper-row-features .col-md-3 ul li a:hover { color: #ffd966; padding-left: 6px; }
+
+    /* headings & cards */
+    .section-heading-page { background: linear-gradient(135deg, #eef5ff, #d9e8f7); padding: 1.5rem 0; border-bottom: 1px solid #cbddee; }
+    .title-v2 { font-weight: 600; letter-spacing: -0.02em; color: #0a2f5e; border-left: 5px solid #f5b342; padding-left: 14px; }
+    .title-v2.text-warning { border-left-color: #f5b342; }
+
+    /* accordion modern */
+    .panel-acc .panel { border: none; background: transparent; border-radius: 16px; margin-bottom: 12px; }
+    .panel-acc .panel-heading { background: transparent; padding: 0; }
+    .panel-acc .panel-title a {
+      display: block; padding: 16px 20px; border-radius: 40px; background: #eef4fa;
+      font-weight: 600; color: #0a2f5e; text-decoration: none; transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .panel-acc .panel-title a:hover { background: #dce8f5; }
+    .panel-acc .panel-title a.acc-on { background: #d4e2f5; }
+    .panel-acc .panel-body { background: #ffffff; border-radius: 0 0 20px 20px; padding: 20px 24px; }
+
+    /* quick links / boxes */
+    .list-group-item-text li { list-style: none; margin-bottom: 6px; }
+    .list-group-item-text li a { color: #1e3a6b; font-weight: 450; text-decoration: none; border-bottom: 1px dashed transparent; transition: 0.15s; }
+    .list-group-item-text li a:hover { color: #c4450a; border-bottom-color: #c4450a; }
+
+    /* Team cards */
+    .content-box.bordered { background: #f6faff; border-radius: 24px; padding: 12px 6px; transition: 0.25s; border: 1px solid #e9f0f8; height: 100%; }
+    .content-box.bordered:hover { transform: translateY(-5px); box-shadow: 0 12px 24px -8px rgba(10,47,94,0.12); }
+    .content-box .img-wrapper img { border-radius: 50%; width: 80px; height: 80px; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+    .content-box .title-sm { font-size: 0.9rem; font-weight: 700; margin-top: 10px; color: #b22222; }
+    .content-box p { font-size: 0.75rem; font-weight: 500; color: #1f3a5f; }
+
+    /* slider & carousel */
+    .wrapper-slider .carousel-inner { border-radius: 28px; overflow: hidden; box-shadow: 0 12px 30px -6px rgba(0,0,0,0.08); }
+    .carousel-control-prev-icon, .carousel-control-next-icon { background-color: #0a2f5e; border-radius: 50%; padding: 16px; }
+
+    /* footer */
+    .footer { background: #f0f5fc; border-top: 1px solid #d6e4f0; padding: 2.5rem 0 1rem; }
+    .footer-bottom { background: #0a2f5e; color: #c9dff5; padding: 1rem 0; }
+    .footer-bottom .copyright { margin: 0; font-size: 0.85rem; letter-spacing: 0.02em; }
+
+    /* marquee */
+    .marquee-custom { background: #f2f9ff; border-radius: 40px; padding: 6px 16px; border: 1px solid #d2e2f5; }
+    .marquee-custom a { color: #0a2f5e; font-weight: 500; margin-right: 20px; }
+
+    /* misc */
+    .text-theme-sm { color: #1f3a5f; }
+    .bg-soft-primary { background: #e6f0ff; }
+    .border-soft { border: 1px solid #dce7f5; }
+
+    /* editable highlight */
+    .editable-hint {
+      position: relative;
+      cursor: text;
+      transition: 0.2s;
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+    .editable-hint:hover {
+      background: #fff9e6;
+      box-shadow: 0 0 0 2px #ffd966;
+    }
+    .editable-hint:focus {
+      background: #fff9e6;
+      box-shadow: 0 0 0 3px #f5b342;
+      outline: none;
+    }
+    .edit-toolbar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: #0a2f5e;
+      color: white;
+      border-radius: 40px;
+      padding: 10px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .edit-toolbar button {
+      background: #ffd966;
+      border: none;
+      border-radius: 30px;
+      padding: 6px 18px;
+      font-weight: 600;
+      color: #0a2f5e;
+      transition: 0.2s;
+    }
+    .edit-toolbar button:hover { background: #ffed9e; transform: scale(1.03); }
+    .edit-toolbar .badge { background: #ff7f3f; color: #fff; }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .navbar-brand img { height: 40px; }
+      .mega-menu .wrapper-row-features .col-md-3 { margin-bottom: 1rem; }
+      .edit-toolbar { bottom: 10px; right: 10px; padding: 6px 14px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper-body">
+
+  <!-- HEADER / NAVBAR -->
+  <header id="header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Top bar -->
+        <div class="row w-100 g-0 align-items-center menu-top-inverse rounded-3 px-2 py-1 mb-1">
+          <div class="col-sm-6 col-8 d-flex align-items-center">
+            <a class="text-white text-decoration-none fw-medium" href="#">
+              <i class="bi bi-telephone-fill me-2"></i> Telephone Directory
+            </a>
+          </div>
+          <div class="col-sm-6 col-4 d-flex justify-content-end gap-2">
+            <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <!-- main navbar -->
+        <div class="container-fluid px-0">
+          <a class="navbar-brand" href="#"><img src="assets/images/logo/swr_logo.png" alt="SWR"></a>
+          <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="genDropdown" role="button" data-bs-toggle="dropdown">General</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Network Map</a></li>
+                  <li><a class="dropdown-item" href="#">Organisation Chart</a></li>
+                  <li><a class="dropdown-item" href="#">Schedule of Powers</a></li>
+                  <li><a class="dropdown-item" href="#">Circulars</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="gmDropdown" role="button" data-bs-toggle="dropdown">GM's Page</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">GM Tour Programme</a></li>
+                  <li><a class="dropdown-item" href="#">AGM Tour Programme</a></li>
+                  <li><a class="dropdown-item" href="#">Inspection Notes</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="hqDropdown" role="button" data-bs-toggle="dropdown">Head Qrs</a>
+                <div class="dropdown-menu w-100 p-4" style="border-radius:20px;">
+                  <div class="row">
+                    <div class="col-md-3 col-sm-6"><a class="dropdown-item" href="#"><i class="bi bi-rocket-takeoff me-1"></i> General</a></div>
+                    <div class="col-md-3 col-sm-6"><a class="dropdown-item" href="#"><i class="bi bi-rocket-takeoff me-1"></i> Accounts</a></div>
+                    <div class="col-md-3 col-sm-6"><a class="dropdown-item" href="#"><i class="bi bi-rocket-takeoff me-1"></i> Commercial</a></div>
+                    <div class="col-md-3 col-sm-6"><a class="dropdown-item" href="#"><i class="bi bi-rocket-takeoff me-1"></i> Engineering</a></div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="divDropdown" role="button" data-bs-toggle="dropdown">Divisions</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Hubli</a></li>
+                  <li><a class="dropdown-item" href="#">Bangalore</a></li>
+                  <li><a class="dropdown-item" href="#">Mysore</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN SECTION with editable areas -->
+  <main class="container mt-4" id="editableMain">
+
+    <!-- ====== EDITABLE: INTRO ROW ====== -->
+    <div class="row g-4" contenteditable="true" id="editableIntro">
+      <!-- left column: accordion -->
+      <div class="col-lg-6">
+        <div class="panel-acc" id="accordionExample">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title"><a class="acc-on" data-bs-toggle="collapse" href="#collapse1">About Us</a></h4></div>
+            <div id="collapse1" class="panel-collapse collapse show"><div class="panel-body"><p><span class="fw-bold text-danger">South Western Railway</span> was created by amalgamating the re-organized Hubli division from South Central Railway and Bangalore & Mysore divisions from Southern Railway. It has been operational from 1st April 2003.</p></div></div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title"><a data-bs-toggle="collapse" href="#collapse2">Profile</a></h4></div>
+            <div id="collapse2" class="panel-collapse collapse"><div class="panel-body"><table class="table table-bordered"><tr><td>Divisions</td><td>Hubballi, Bangalore, Mysore</td></tr><tr><td>Route Kms</td><td>3,662</td></tr></table></div></div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title"><a data-bs-toggle="collapse" href="#collapse3">Schedule of Powers</a></h4></div>
+            <div id="collapse3" class="panel-collapse collapse"><div class="panel-body"><a href="#">SWR Model Schedule – 2018</a></div></div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title"><a data-bs-toggle="collapse" href="#collapse4">Bill Information</a></h4></div>
+            <div id="collapse4" class="panel-collapse collapse"><div class="panel-body"><i class="bi bi-share me-2"></i> View status <a href="#">click here</a></div></div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4 class="panel-title"><a data-bs-toggle="collapse" href="#collapse5">Budget &amp; Expenditure</a></h4></div>
+            <div id="collapse5" class="panel-collapse collapse"><div class="panel-body"><i class="bi bi-share me-2"></i> BG & Expenditure – <a href="#">Click Here</a></div></div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="mt-4">
+          <h3 class="title-v2 text-warning">Quick Links</h3>
+          <div class="row g-2">
+            <div class="col-4 col-md-3"><a href="#"><img src="assets/images/placeholder/teamswr.png" class="img-fluid rounded-3 shadow-sm" alt=""></a></div>
+            <div class="col-4 col-md-3"><a href="#"><img src="assets/images/placeholder/orgchart.png" class="img-fluid rounded-3 shadow-sm" alt=""></a></div>
+            <div class="col-4 col-md-3"><a href="#"><img src="assets/images/placeholder/dms_logo.png" class="img-fluid rounded-3 shadow-sm" alt=""></a></div>
+            <div class="col-4 col-md-3"><a href="#"><img src="assets/images/placeholder/sysmap.png" class="img-fluid rounded-3 shadow-sm" alt=""></a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right column: slider & marquee -->
+      <div class="col-lg-6">
+        <div class="wrapper-slider">
+          <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow">
+              <div class="carousel-item active"><img src="assets/images/general/gmswr.png" class="d-block w-100" alt="..."></div>
+              <div class="carousel-item"><img src="assets/images/general/chenab_br.png" class="d-block w-100" alt="..."></div>
+              <div class="carousel-item"><img src="assets/images/general/yoga_swr.png" class="d-block w-100" alt="..."></div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <!-- marquee -->
+        <div class="marquee-custom mt-3">
+          <marquee behavior="scroll" direction="up" height="110" onMouseOver="this.stop()" onMouseOut="this.start()" scrolldelay="180">
+            <a href="#" class="d-block">| NEW | BG-EXP OF CAPITAL DEMANDS – CONSTRUCTION BNC</a>
+            <a href="#" class="d-block">| BUDGET, RG & EXPENDITURE REV & CAP 2025-26</a>
+            <a href="#" class="d-block">| MODIFIED PAGE OF MODEL SOP-2018</a>
+          </marquee>
+        </div>
+      </div>
+    </div> <!-- end editableIntro -->
+
+    <!-- ====== EDITABLE: QUICKLINKS SECTION ====== -->
+    <div class="row mt-5 g-4" contenteditable="true" id="editableQuicklinks">
+      <div class="col-md-3">
+        <h4 class="title-v2">HdQtr Department</h4>
+        <ul class="list-unstyled list-group-item-text">
+          <li><a href="#">General</a></li><li><a href="#">Accounts</a></li><li><a href="#">Commercial</a></li>
+          <li><a href="#">Engineering</a></li><li><a href="#">Electrical</a></li><li><a href="#">Mechanical</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h4 class="title-v2">Quick Links</h4>
+        <ul class="list-unstyled list-group-item-text">
+          <li><a href="#">Internet – SW Railway</a></li><li><a href="#">Intranet-Railway Board</a></li>
+          <li><a href="#">Circulars Pay Commission</a></li><li><a href="#">SWR-e-Office</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h4 class="title-v2">More Links</h4>
+        <ul class="list-unstyled list-group-item-text">
+          <li><a href="#">Earnings – SWR</a></li><li><a href="#">Budget and Exp</a></li>
+          <li><a href="#">Bill Status</a></li><li><a href="#">Gruham Portal</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h4 class="title-v2">Latest</h4>
+        <div class="bg-soft-primary p-2 rounded-3" style="height:140px; overflow-y:auto;">
+          <a href="#" class="d-block text-danger fw-semibold">| NEW | BG-EXP CAPITAL</a>
+          <a href="#" class="d-block">BUDGET 2025-26</a>
+          <a href="#" class="d-block">SOP-2018 correction</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== EDITABLE: TEAM SWR ====== -->
+    <div class="mt-5" contenteditable="true" id="editableTeam">
+      <h3 class="title-v2" id="teamswr">Team SWR</h3>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-3 mt-2">
+        <div class="col text-center"><div class="content-box bordered"><img src="assets/images/team/swr_gm.png" class="img-fluid rounded-circle" style="width:80px;"><h6 class="mt-2 fw-bold text-danger">P ANANTH</h6><small>General Manager</small></div></div>
+        <div class="col text-center"><div class="content-box bordered"><img src="assets/images/team/swr_caorsp.png" class="img-fluid rounded-circle" style="width:80px;"><h6 class="mt-2 fw-bold text-danger">B RAMA MOHANA</h6><small>Addl GM</small></div></div>
+        <div class="col text-center"><div class="content-box bordered"><img src="assets/images/team/swr_sdgm.png" class="img-fluid rounded-circle" style="width:80px;"><h6 class="mt-2 fw-bold text-danger">MANOJ KUMAR</h6><small>SDGM &amp; CVO</small></div></div>
+        <div class="col text-center"><div class="content-box bordered"><img src="assets/images/team/swr_pfa.png" class="img-fluid rounded-circle" style="width:80px;"><h6 class="mt-2 fw-bold text-danger">RAMAAAH DEVIIE</h6><small>PFA</small></div></div>
+        <div class="col text-center"><div class="content-box bordered"><img src="assets/images/team/swr_pcom.png" class="img-fluid rounded-circle" style="width:80px;"><h6 class="mt-2 fw-bold text-danger">H M DINESH</h6><small>PCOM</small></div></div>
+        <div class="col text-center"><div class="content-box bordered"><img src="assets/images/team/pce_swr.png" class="img-fluid rounded-circle" style="width:80px;"><h6 class="mt-2 fw-bold text-danger">C M GUPTA</h6><small>PCE</small></div></div>
+      </div>
+    </div>
+
+    <!-- ====== EDITABLE: HERITAGE ====== -->
+    <div class="mt-5" contenteditable="true" id="editableHeritage">
+      <h3 class="title-v2">World Heritage Sites &amp; Tourist Destinations</h3>
+      <p class="lead">This Railway hosts a large number of world heritage sites. Important destinations: Hampi ruins, Badami Caves, Goan Beaches.</p>
+      <div class="owl-carousel owl-theme" id="owlHeritage">
+        <div class="item"><img src="assets/images/clients/hospet.png" class="img-fluid rounded-3" alt=""><p class="text-center small">Hospet</p></div>
+        <div class="item"><img src="assets/images/clients/badami.png" class="img-fluid rounded-3" alt=""><p class="text-center small">Badami Caves</p></div>
+        <div class="item"><img src="assets/images/clients/pattadakallu.png" class="img-fluid rounded-3" alt=""><p class="text-center small">Pattadakallu</p></div>
+        <div class="item"><img src="assets/images/clients/mysorepal.png" class="img-fluid rounded-3" alt=""><p class="text-center small">Mysore Palace</p></div>
+        <div class="item"><img src="assets/images/clients/goabeach.png" class="img-fluid rounded-3" alt=""><p class="text-center small">Goan Beaches</p></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3"><img src="assets/images/logo/swr_logo.png" style="height:50px;" alt=""><br><div class="mt-2"><a href="#" class="me-2"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-twitter-x"></i></a></div></div>
+        <div class="col-sm-2"><h6 class="fw-bold">Important</h6><ul class="list-unstyled small"><li><a href="#">Telephone Directory</a></li><li><a href="#">Schedule of Power</a></li></ul></div>
+        <div class="col-sm-2"><h6 class="fw-bold">Other</h6><ul class="list-unstyled small"><li><a href="#">Gruham</a></li><li><a href="#">Photo Gallery</a></li></ul></div>
+        <div class="col-sm-5"><h6 class="fw-bold">South Western Railway</h6><p class="small">Headquarters: Hubli, Karnataka.</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom mt-3">
+      <div class="container text-center"><small>South Western Railway – EDP, BANGALORE</small></div>
+    </div>
+  </footer>
+
+  <!-- EDITOR TOOLBAR (floating) -->
+  <div class="edit-toolbar" id="editToolbar">
+    <span class="badge">✎ Edit mode</span>
+    <button id="toggleEditBtn">Toggle Edit</button>
+    <button id="saveContentBtn" style="background:#4caf50; color:white;">💾 Save</button>
+    <button id="resetContentBtn" style="background:#e0e0e0; color:#1e293b;">↺ Reset</button>
+  </div>
+</div> <!-- wrapper-body -->
+
+<!-- scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+  (function() {
+    // ---- editable functionality ----
+    const editableAreas = document.querySelectorAll('[contenteditable="true"]');
+    const toggleBtn = document.getElementById('toggleEditBtn');
+    const saveBtn = document.getElementById('saveContentBtn');
+    const resetBtn = document.getElementById('resetContentBtn');
+
+    // store initial HTML for reset
+    let initialHTML = {};
+    editableAreas.forEach(el => {
+      initialHTML[el.id] = el.innerHTML;
+    });
+
+    // start with edit mode OFF (contenteditable false)
+    editableAreas.forEach(el => el.contentEditable = 'false');
+
+    let editMode = false;
+
+    function setEditMode(mode) {
+      editMode = mode;
+      editableAreas.forEach(el => el.contentEditable = mode);
+      toggleBtn.textContent = mode ? 'Disable Edit' : 'Enable Edit';
+      toggleBtn.style.background = mode ? '#ff7f3f' : '#ffd966';
+      // visual hint
+      if (mode) {
+        editableAreas.forEach(el => el.classList.add('editable-hint'));
+      } else {
+        editableAreas.forEach(el => el.classList.remove('editable-hint'));
+      }
+    }
+
+    toggleBtn.addEventListener('click', function() {
+      setEditMode(!editMode);
+    });
+
+    // Save: show alert with current content (could be extended to localStorage)
+    saveBtn.addEventListener('click', function() {
+      const payload = {};
+      editableAreas.forEach(el => {
+        payload[el.id] = el.innerHTML;
+      });
+      // show a nice message
+      alert('✅ Content saved! (in console & localStorage demo)');
+      console.log('📦 Saved content:', payload);
+      // optionally store in localStorage
+      try {
+        localStorage.setItem('swr_editable_content', JSON.stringify(payload));
+      } catch(e) {}
+    });
+
+    // Reset: restore initial HTML
+    resetBtn.addEventListener('click', function() {
+      if (confirm('Reset all editable content to original?')) {
+        editableAreas.forEach(el => {
+          el.innerHTML = initialHTML[el.id] || '';
+        });
+        // re-init owl carousel after reset (if needed)
+        if (typeof $ !== 'undefined') {
+          $('#owlHeritage').trigger('destroy.owl.carousel');
+          $('#owlHeritage').owlCarousel({ loop:true, margin:15, nav:true, dots:false, responsive:{0:{items:1},600:{items:3},1000:{items:5}} });
+        }
+        alert('↺ Reset complete.');
+      }
+    });
+
+    // load saved content from localStorage if exists
+    try {
+      const saved = localStorage.getItem('swr_editable_content');
+      if (saved) {
+        const data = JSON.parse(saved);
+        editableAreas.forEach(el => {
+          if (data[el.id]) {
+            el.innerHTML = data[el.id];
+          }
+        });
+        console.log('♻️ loaded saved content');
+      }
+    } catch(e) {}
+
+    // ---- Owl Carousel init ----
+    $(document).ready(function() {
+      $('#owlHeritage').owlCarousel({
+        loop: true,
+        margin: 15,
+        nav: true,
+        dots: false,
+        responsive: { 0: { items: 1 }, 600: { items: 3 }, 1000: { items: 5 } }
+      });
+    });
+
+    // ---- additional: reinit carousel after content change (via reset or save) ----
+    // we also listen to reset button to reinit
+    const origReset = resetBtn.click;
+    resetBtn.addEventListener('click', function() {
+      setTimeout(() => {
+        if (typeof $ !== 'undefined') {
+          $('#owlHeritage').trigger('destroy.owl.carousel');
+          $('#owlHeritage').owlCarousel({ loop:true, margin:15, nav:true, dots:false, responsive:{0:{items:1},600:{items:3},1000:{items:5}} });
+        }
+      }, 100);
+    });
+
+  })();
+</script>
+</body>
+</html>
